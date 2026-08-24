@@ -18,13 +18,17 @@ The database integrates core museum sectors:
 
 The system consists of **8 interconnected tables**:
 
-[author] ──────< (collection_author) >────── [collection]
-                                                   │
-                                         (exhibition_items)
-                                                   │
-[visitor] ──┐                                      ▼
-            ├──> [ticket] <── [staff] ───> [exhibition]
-
+```mermaid
+erDiagram
+    author ||--o{ collection_author : ""
+    collection ||--o{ collection_author : ""
+    collection ||--o{ exhibition_items : ""
+    exhibition ||--o{ exhibition_items : ""
+    exhibition ||--o{ ticket : ""
+    visitor ||--o{ ticket : ""
+    staff ||--o{ ticket : ""
+    staff ||--o{ exhibition : ""
+```
 * **Main Tables**: `author`, `collection`, `staff`, `visitor`, `exhibition`, `ticket`[cite: 2].
 * **Junction Tables (M:N)**: `collection_author`, `exhibition_items`[cite: 2].
 
